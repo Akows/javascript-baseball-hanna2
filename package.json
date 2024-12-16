@@ -2,6 +2,7 @@
   "name": "javascript-baseball",
   "version": "1.0.0",
   "main": "index.ts",
+  "type": "module",
   "scripts": {
     "start": "npm run lite",
     "test": "jest",

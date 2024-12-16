@@ -10,7 +10,7 @@
     // 중복 없는 3개의 숫자 배열 생성 확인.
     // calculateResult 함수의 스트라이크와 볼 계산 확인.
 
-const { getRandomInteger, generateRandomNumbers, calculateResult } = require('../index.js');
+const { getRandomInteger, generateRandomNumbers, calculateResult } = require('../exam01/my_version/exam01.js');
 
 describe('숫자 야구 게임 테스트', () => {
 
@@ -69,6 +69,38 @@ describe('숫자 야구 게임 테스트', () => {
             expect(result).toEqual({ strikes: 0, balls: 0 });
         });
     });
+
+    describe('calculateResult 함수', () => {
+        test('사용자와 컴퓨터 숫자가 모두 다른 경우', () => {
+            const result = calculateResult([1, 2, 3], [4, 5, 6]);
+            expect(result).toEqual({ strikes: 0, balls: 0 });
+        });
+    
+        test('사용자 숫자가 모두 맞지만 위치가 다른 경우 (3볼)', () => {
+            const result = calculateResult([1, 2, 3], [3, 1, 2]);
+            expect(result).toEqual({ strikes: 0, balls: 3 });
+        });
+    
+        test('사용자 입력이 잘못된 경우', () => {
+            expect(() => calculateResult([1, 2, 3], [1, 2])).toThrow();
+        });
+    });
+    
+    describe('generateRandomNumbers 함수', () => {
+        test('결과 배열은 항상 1~9 범위의 숫자만 포함해야 한다.', () => {
+            for (let i = 0; i < 100; i++) {
+                const numbers = generateRandomNumbers();
+                numbers.forEach(num => {
+                    expect(num).toBeGreaterThanOrEqual(1);
+                    expect(num).toBeLessThanOrEqual(9);
+                });
+            }
+        });
+    });
     
 });
     
+
+
+
+
